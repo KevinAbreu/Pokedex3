@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body class="bg-dark">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div class="card bg-warning mt-5 p-4">
+              <h1>Pokedex</h1>
+              <p>Please enter Nat Dex # to get a Pokemon</p>
+              <input type="text" class="form-control form-control-lg" id="numberInput" placeholder="1 to 807 (More coming soon!)">
+              <input type="submit" class="form-control form-control-md" onclick="getFactFetch()">
+              <div class="card-body" id="fact">
+                <h4 class="card-title">
+                  Pokemon Species
+                </h4>
+                <p id="factText" class="cardText"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+    <script src="pokeapi.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>
