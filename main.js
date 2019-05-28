@@ -5,7 +5,7 @@ let numberInput = document.querySelector('#numberInput')
 // numberInput.addEventListener('click', getFactFetch);
 
 class Pokemon {
-  constructor(hp,atk,def){
+  constructor(hp,atk,def,satk,sdef,spe){
     // this.type1 = type1
     // this.type2 = type2
     // this.ability1 = ability1
@@ -14,25 +14,29 @@ class Pokemon {
     this.hp = hp
     this.atk = atk
     this.def = def
-    // this.satk = satk
-    // this.sdef = sdef
-    // this.spe = spe
+    this.satk = satk
+    this.sdef = sdef
+    this.spe = spe
   }
 }
 
-function getFactFetch(number) {
+function getFactFetch() {
+  let number = numberInput.value;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
      let info = JSON.parse(this.responseText)
-     factText.innerText = info
-     pokemon = new Pokemon(info["stats"][5]["stat"]["hp"],info["stats"][4]["stat"]["attack"],info["stats"][3]["stat"]["defense"])
+     pokemon = new Pokemon(info["stats"][5]["base_stat"],info["stats"][4]["base_stat"],info["stats"][3]["base_stat"],info["stats"][2]["base_stat"],info["stats"][1]["base_stat"],info["stats"][0]["base_stat"] )
+    fact.style.display = 'block'
+    let str = JSON.stringify(pokemon)
+    factText.innerText = str
      console.log(info);
    }
   };
   xhttp.open("GET", `https://pokeapi.co/api/v2/pokemon/${number}/`, true);
   xhttp.send();
 }
+
 
 //
 // function getFactFetch(number){
