@@ -5,12 +5,13 @@ let numberInput = document.querySelector('#numberInput')
 // numberInput.addEventListener('click', getFactFetch);
 
 class Pokemon {
-  constructor(hp,atk,def,satk,sdef,spe){
+  constructor(name,hp,atk,def,satk,sdef,spe){
     // this.type1 = type1
     // this.type2 = type2
     // this.ability1 = ability1
     // this.ability2 = ability2
     // this.ability3 = ability3
+    this.name = name
     this.hp = hp
     this.atk = atk
     this.def = def
@@ -26,9 +27,11 @@ function getFactFetch() {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
      let info = JSON.parse(this.responseText)
-     pokemon = new Pokemon(info["stats"][5]["base_stat"],info["stats"][4]["base_stat"],info["stats"][3]["base_stat"],info["stats"][2]["base_stat"],info["stats"][1]["base_stat"],info["stats"][0]["base_stat"] )
+     pokemon = new Pokemon(info["species"]["name"],info["stats"][5]["base_stat"],info["stats"][4]["base_stat"],info["stats"][3]["base_stat"],info["stats"][2]["base_stat"],info["stats"][1]["base_stat"],info["stats"][0]["base_stat"] )
     fact.style.display = 'block'
     let str = `HP:    ${pokemon.hp}   Attack:   ${pokemon.atk}  Defense:   ${pokemon.def}   Sp.Attack:   ${pokemon.satk}   Sp.Defense:   ${pokemon.sdef}   Speed:   ${pokemon.spe}`
+    let pkmn = `${pokemon.name}`
+    pkmnname.innerText = pkmn
     factText.innerText = str
      console.log(info);
    }
