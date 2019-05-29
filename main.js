@@ -26,14 +26,16 @@ function getFactFetch() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+
      let info = JSON.parse(this.responseText)
      pokemon = new Pokemon(info["species"]["name"],info["stats"][5]["base_stat"],info["stats"][4]["base_stat"],info["stats"][3]["base_stat"],info["stats"][2]["base_stat"],info["stats"][1]["base_stat"],info["stats"][0]["base_stat"] )
     fact.style.display = 'block'
-    let str = `HP:    ${pokemon.hp}   Attack:   ${pokemon.atk}  Defense:   ${pokemon.def}   Sp.Attack:   ${pokemon.satk}   Sp.Defense:   ${pokemon.sdef}   Speed:   ${pokemon.spe}`
+    let str = `HP:    ${pokemon.hp} \n  Attack:   ${pokemon.atk} \n Defense:   ${pokemon.def} \n  Sp.Attack:   ${pokemon.satk} \n  Sp.Defense:   ${pokemon.sdef} \n  Speed:   ${pokemon.spe}`
     let pkmn = `${pokemon.name}`
     pkmnname.innerText = pkmn
     factText.innerText = str
      console.log(info);
+
    }
   };
   xhttp.open("GET", `https://pokeapi.co/api/v2/pokemon/${number}/`, true);
