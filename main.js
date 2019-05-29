@@ -28,7 +28,7 @@ function getFactFetch() {
      let info = JSON.parse(this.responseText)
      pokemon = new Pokemon(info["stats"][5]["base_stat"],info["stats"][4]["base_stat"],info["stats"][3]["base_stat"],info["stats"][2]["base_stat"],info["stats"][1]["base_stat"],info["stats"][0]["base_stat"] )
     fact.style.display = 'block'
-    let str = JSON.stringify(pokemon)
+    let str = 'HP: '  + pokemon.hp + ' Attack: ' + pokemon.atk + 'Defense: ' + pokemon.def + ' Sp.Attack: ' + pokemon.satk + ' Sp.Defense: ' + pokemon.sdef + ' Speed: ' + pokemon.spe
     factText.innerText = str
      console.log(info);
    }
