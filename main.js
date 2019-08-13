@@ -20,9 +20,12 @@ class Pokemon {
     this.spe = spe
   }
 }
+function capital(nama){
+  nama.charAt(0).toUpperCase();
+}
 
 function getFactFetch() {
-  let number = numberInput.value;
+  let number = numberInput.value.toLowerCase();
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -30,17 +33,34 @@ function getFactFetch() {
      let info = JSON.parse(this.responseText)
      pokemon = new Pokemon(info["species"]["name"],info["stats"][5]["base_stat"],info["stats"][4]["base_stat"],info["stats"][3]["base_stat"],info["stats"][2]["base_stat"],info["stats"][1]["base_stat"],info["stats"][0]["base_stat"] )
     fact.style.display = 'block'
+
     let str = `HP:    ${pokemon.hp} \n  Attack:   ${pokemon.atk} \n Defense:   ${pokemon.def} \n  Sp.Attack:   ${pokemon.satk} \n  Sp.Defense:   ${pokemon.sdef} \n  Speed:   ${pokemon.spe}`
     let pkmn = `${pokemon.name}`
-    pkmnname.innerText = pkmn
-    factText.innerText = str
+    pkmnname.innerText = pkmn.charAt(0).toUpperCase() + pkmn.slice(1);
+    factText.innerText = str.charAt(0).toUpperCase() + str.slice(1);
      console.log(info);
+
 
    }
   };
   xhttp.open("GET", `https://pokeapi.co/api/v2/pokemon/${number}/`, true);
   xhttp.send();
 }
+
+
+
+function enter(){
+  document.getElementById("numberInput")
+      .addEventListener("keyup", function(event) {
+      event.preventDefault();
+      if (event.keyCode === 13 || event.which === 13) {
+          getFactFetch();
+      }
+  });
+}
+
+
+
 //
 //     fetch(`https://pokeapi.co/api/v2/pokemon/${number}/`)
 //     .then(response => response.text())
